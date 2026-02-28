@@ -79,9 +79,14 @@ async def seed() -> None:
 
                 r = results[0]
 
-                # Check if already exists
+                # Check if already exists by open_library_key or isbn
                 existing = None
-                if r.get("isbn_13"):
+                ol_key = r.get("open_library_key")
+                if ol_key:
+                    stmt = select(Book).where(Book.open_library_key == ol_key)
+                    res = await db.execute(stmt)
+                    existing = res.scalar_one_or_none()
+                if not existing and r.get("isbn_13"):
                     stmt = select(Book).where(Book.isbn_13 == r["isbn_13"])
                     res = await db.execute(stmt)
                     existing = res.scalar_one_or_none()
@@ -123,6 +128,7 @@ async def seed() -> None:
 
             except Exception as e:
                 logger.error("seed_error", query=query, error=str(e))
+                await db.rollback()
                 continue
 
         await db.commit()

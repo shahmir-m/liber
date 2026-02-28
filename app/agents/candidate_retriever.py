@@ -58,15 +58,16 @@ async def retrieve_candidates(
     # Lower distance = more similar; we convert to similarity score
     embedding_str = "[" + ",".join(str(x) for x in profile_embedding) + "]"
 
-    query = text("""
-        SELECT
-            be.book_id,
-            1 - (be.embedding <=> :embedding::vector) as similarity
-        FROM book_embeddings be
-        JOIN books b ON b.id = be.book_id
-        ORDER BY be.embedding <=> :embedding::vector
-        LIMIT :limit
-    """)
+    # Use $1 and $2 placeholders to avoid conflict between SQLAlchemy's
+    # :param syntax and PostgreSQL's ::type cast syntax.
+    query = text(
+        "SELECT be.book_id, "
+        "1 - (be.embedding <=> cast(:embedding AS vector)) as similarity "
+        "FROM book_embeddings be "
+        "JOIN books b ON b.id = be.book_id "
+        "ORDER BY be.embedding <=> cast(:embedding AS vector) "
+        "LIMIT :limit"
+    )
 
     result = await db.execute(
         query,
