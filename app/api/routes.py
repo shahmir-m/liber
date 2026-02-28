@@ -180,7 +180,7 @@ async def scrape_book_reviews(
     scrape_log = ScrapeLog(
         book_id=book.id,
         source="goodreads",
-        status="success" if stored_count > 0 else "partial",
+        status="success" if stored_count > 0 else "failed",
         reviews_found=stored_count,
     )
     db.add(scrape_log)
