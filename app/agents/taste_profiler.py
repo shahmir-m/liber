@@ -62,7 +62,8 @@ async def profile_taste(
     resolved_books: list[dict] = []
     for title in favorite_books:
         # Check DB
-        stmt = select(Book).where(Book.title.ilike(f"%{title}%")).limit(1)
+        escaped_title = title.replace("%", "\\%").replace("_", "\\_")
+        stmt = select(Book).where(Book.title.ilike(f"%{escaped_title}%")).limit(1)
         result = await db.execute(stmt)
         book = result.scalar_one_or_none()
 

@@ -158,7 +158,7 @@ def _scrape_goodreads_sync(
 
     except Exception as e:
         logger.error("goodreads_scrape_error", error=str(e), book=book_title)
-        return []
+        raise
     finally:
         driver.quit()
 
@@ -174,8 +174,12 @@ async def scrape_reviews(
 
     # Run synchronous scraping in a thread to avoid blocking the event loop
     loop = asyncio.get_event_loop()
-    reviews = await loop.run_in_executor(
-        None, _scrape_goodreads_sync, book_title, author, max_reviews
-    )
+    try:
+        reviews = await loop.run_in_executor(
+            None, _scrape_goodreads_sync, book_title, author, max_reviews
+        )
+    except Exception as e:
+        logger.error("scrape_reviews_failed_after_retries", error=str(e), book=book_title)
+        return []
 
     return reviews
