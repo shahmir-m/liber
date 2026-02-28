@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "liber"
+version = "0.1.0"
+description = "A Multi-Agent Book Recommendation System"
+authors = ["Shahmir Masood"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.0"
+uvicorn = {extras = ["standard"], version = "^0.34.0"}
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.0"}
+asyncpg = "^0.30.0"
+pgvector = "^0.3.0"
+redis = {extras = ["hiredis"], version = "^5.0.0"}
+httpx = "^0.28.0"
+openai = "^1.60.0"
+beautifulsoup4 = "^4.12.0"
+selenium = "^4.27.0"
+pydantic = "^2.10.0"
+pydantic-settings = "^2.7.0"
+python-dotenv = "^1.0.0"
+alembic = "^1.14.0"
+rq = "^2.1.0"
+numpy = "^2.0.0"
+tenacity = "^9.0.0"
+tiktoken = "^0.8.0"
+structlog = "^24.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.25.0"
+ruff = "^0.9.0"
+mypy = "^1.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
