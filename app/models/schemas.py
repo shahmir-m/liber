@@ -29,7 +29,6 @@ class BookSearchRequest(BaseModel):
 class ScrapeRequest(BaseModel):
     """Request to scrape reviews for a book."""
 
-    book_id: int
     max_reviews: int = Field(default=10, ge=1, le=20)
 
 

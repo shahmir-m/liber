@@ -57,6 +57,27 @@ SEED_QUERIES = [
     "The Color Purple Alice Walker",
     "Ender's Game Orson Scott Card",
     "The Martian Andy Weir",
+    # --- Batch 2: 20 additional books across diverse genres ---
+    "The Picture of Dorian Gray Oscar Wilde",
+    "Moby Dick Herman Melville",
+    "Jane Eyre Charlotte Bronte",
+    "Wuthering Heights Emily Bronte",
+    "The Count of Monte Cristo Alexandre Dumas",
+    "Anna Karenina Leo Tolstoy",
+    "The Bell Jar Sylvia Plath",
+    "Invisible Man Ralph Ellison",
+    "A Clockwork Orange Anthony Burgess",
+    "The Stranger Albert Camus",
+    "Frankenstein Mary Shelley",
+    "Dracula Bram Stoker",
+    "The Shining Stephen King",
+    "Gone Girl Gillian Flynn",
+    "The Girl with the Dragon Tattoo Stieg Larsson",
+    "Life of Pi Yann Martel",
+    "The Kite Runner Khaled Hosseini",
+    "Americanah Chimamanda Ngozi Adichie",
+    "Station Eleven Emily St. John Mandel",
+    "Project Hail Mary Andy Weir",
 ]
 
 
