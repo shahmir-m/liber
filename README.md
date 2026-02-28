@@ -160,14 +160,4 @@ User Input
 
 ---
 
-# 11. What This MVP Demonstrates
-
-- Hybrid ingestion pipeline: API + review scraping
-- Token-efficient LLM usage
-- Multi-agent orchestration
-- Production-ready API + caching
-- Observability on cost, latency, token consumption
-
----
-
-# End of Token-Optimized MVP Spec
+# End of MVP Spec
